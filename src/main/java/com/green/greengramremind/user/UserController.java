@@ -1,14 +1,8 @@
 package com.green.greengramremind.user;
 
-import com.green.greengramremind.user.model.ResVo;
-import com.green.greengramremind.user.model.UserSignInDto;
-import com.green.greengramremind.user.model.UserSignInVo;
-import com.green.greengramremind.user.model.UserSignUpDto;
+import com.green.greengramremind.user.model.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,12 +12,17 @@ public class UserController {
 
     @PostMapping("signup")
     public ResVo signUp(@RequestBody UserSignUpDto dto) {
-        return new ResVo(0);
+        return userService.signUp(dto);
     }
 
     @PostMapping("signin")
     public UserSignInVo signIn(@RequestBody UserSignInDto dto) {
         // 1. 성공 2. 아이디 없음 3. 비밀번호 틀림
-        return null;
+        return userService.signIn(dto);
     }
+
+//    @GetMapping
+//    public UserInfoVo getUserInfo(@RequestBody UserInfoDto dto) {
+//        return userService.getUserInfo(dto);
+//    }
 }
